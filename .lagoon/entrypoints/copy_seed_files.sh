@@ -9,4 +9,4 @@ if [ -d /app/plugins ] && [ ! "$(ls -A /app/plugins)" ]; then
 fi
 
 # now we fix permissions
-chown -R 1000:1000 /app/config /app/plugins /app/tmp
+# chown -R 1000:1000 /app/config /app/plugins /app/tmp
