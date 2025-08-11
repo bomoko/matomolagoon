@@ -93,6 +93,7 @@ services:
         CLI_IMAGE: *cli-image
     labels:
       lagoon.type: nginx-php
+      lagoon.name: nginx
       lando.type: php-fpm
       lagoon.volumes.matomo_config.path: /app/config
       lagoon.volumes.matomo_plugins.path: /app/plugins
