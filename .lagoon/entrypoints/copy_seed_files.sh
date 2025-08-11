@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -d /app/config ] && [ ! "$(ls -A /app/config)" ]; then
-    cp -a /seedfiles/app/. /app/config/
+    cp -a /seedfiles/config/. /app/config/
 fi
 
 if [ -d /app/plugins ] && [ ! "$(ls -A /app/plugins)" ]; then
