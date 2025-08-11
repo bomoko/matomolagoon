@@ -25,15 +25,15 @@ x-user:
 
 
 volumes:
-  matomo_config:
+  matomo-config:
     labels:
       lagoon.type: persistent
       lagoon.backup: false
-  matomo_plugins:
+  matomo-plugins:
     labels:
       lagoon.type: persistent
       lagoon.backup: false
-  matomo_tmp:
+  matomo-tmp:
     labels:
       lagoon.type: persistent
       lagoon.backup: false
@@ -52,9 +52,9 @@ services:
       # Lagoon Labels
       lagoon.type: cli
       lando.type: php-cli-drupal
-      lagoon.volumes.matomo_config.path: /app/config
-      lagoon.volumes.matomo_plugins.path: /app/plugins
-      lagoon.volumes.matomo_tmp.path: /app/tmp
+      lagoon.volumes.matomo-config.path: /app/config
+      lagoon.volumes.matomo-plugins.path: /app/plugins
+      lagoon.volumes.matomo-tmp.path: /app/tmp
     << : *default-volumes # loads the defined volumes from the top
     user: root
     volumes_from: ### mount the ssh-agent from the pygmy or cachalot ssh-agent. Automatically removed in CI.
@@ -70,9 +70,9 @@ services:
         CLI_IMAGE: *cli-image # Inject the name of the cli image
     labels:
       lagoon.type: nginx-php
-      lagoon.volumes.matomo_config.path: /app/config
-      lagoon.volumes.matomo_plugins.path: /app/plugins
-      lagoon.volumes.matomo_tmp.path: /app/tmp
+      lagoon.volumes.matomo-config.path: /app/config
+      lagoon.volumes.matomo-plugins.path: /app/plugins
+      lagoon.volumes.matomo-tmp.path: /app/tmp
     << : 
       - *default-volumes # loads the defined volumes from the top
       - *default-user # uses the defined user from top
@@ -95,9 +95,9 @@ services:
       lagoon.type: nginx-php
       lagoon.name: nginx
       lando.type: php-fpm
-      lagoon.volumes.matomo_config.path: /app/config
-      lagoon.volumes.matomo_plugins.path: /app/plugins
-      lagoon.volumes.matomo_tmp.path: /app/tmp
+      lagoon.volumes.matomo-config.path: /app/config
+      lagoon.volumes.matomo-plugins.path: /app/plugins
+      lagoon.volumes.matomo-tmp.path: /app/tmp
     << :
      - *default-volumes # loads the defined volumes from the top
      - *default-user # uses the defined user from top
