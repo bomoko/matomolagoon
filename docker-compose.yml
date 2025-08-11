@@ -5,9 +5,9 @@ x-volumes:
     # Define all volumes you would like to have real-time mounted into the docker containers
     volumes:
       # - ./:/main:delegated
-      - matomo_config:/app/config
-      - matomo_plugins:/app/plugins
-      - matomo_tmp:/app/tmp
+      - matomo-config:/app/config
+      - matomo-plugins:/app/plugins
+      - matomo-tmp:/app/tmp
 x-environment:
   &default-environment
     # Route that should be used locally, if you are using pygmy, this route *must* end with .docker.amazee.io
