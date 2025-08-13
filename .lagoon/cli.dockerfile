@@ -9,7 +9,7 @@ COPY --from=matomolib /usr/src/matomo/ /app/
 ENV MATOMO_PLUGIN_DIRS='/app/plugins/;plugins/:/app/plugins_persistent/;plugins_persistent/'
 ENV MATOMO_PLUGIN_COPY_DIR='/app/plugins_persistent/'
 
-RUN mkdir -p /seedfiles/plugins
+RUN mkdir -p /seedfiles/plugins /app/plugins_persistent
 
 COPY --from=matomolib /usr/src/matomo/config /seedfiles/config/
 # COPY --from=matomolib /usr/src/matomo/plugins /seedfiles/plugins/
