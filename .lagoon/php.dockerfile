@@ -15,3 +15,4 @@ COPY ./.lagoon/entrypoints/copy_seed_files.sh /lagoon/entrypoints/100_seed_files
 
 # we have to fix perms for 1000
 RUN chown -R 1000:root /app/config /app/plugins /app/tmp /app/plugins_persistent
+RUN chmod g+rw /app/config /app/plugins /app/tmp /app/plugins_persistent
