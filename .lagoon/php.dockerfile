@@ -10,4 +10,4 @@ ENV MATOMO_PLUGIN_DIRS='/app/plugins/;plugins/:/app/plugins_persistent/;plugins_
 ENV MATOMO_PLUGIN_COPY_DIR='/app/plugins_persistent/'
 
 # we have to fix perms for 1000
-RUN chown -R 1000:1000 /app/config /app/plugins /app/tmp
+RUN chown -R 1000:1000 /app/config /app/plugins /app/tmp /app/plugins_persistent
