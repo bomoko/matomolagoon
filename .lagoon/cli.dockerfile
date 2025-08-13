@@ -19,7 +19,6 @@ RUN chown -R 1000:root /seedfiles/config /seedfiles/plugins /app
 
 
 COPY ./.lagoon/entrypoints/copy_seed_files.sh /lagoon/entrypoints/100_seed_files.sh
-
 COPY ./.env /app/.env
 
 # we have to fix perms for 1000
