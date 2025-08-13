@@ -23,4 +23,4 @@ COPY ./.lagoon/entrypoints/copy_seed_files.sh /lagoon/entrypoints/100_seed_files
 COPY ./.env /app/.env
 
 # we have to fix perms for 1000
-RUN chown -R 1000:1000 /app/config /app/plugins /app/tmp /app/plugins_persistent
+RUN chown -R 1000:root /app/config /app/plugins /app/tmp /app/plugins_persistent
