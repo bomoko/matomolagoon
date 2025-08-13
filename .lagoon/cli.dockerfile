@@ -6,13 +6,14 @@ WORKDIR /app
 # matomo's data is a volume, so we copy from the source location
 COPY --from=matomolib /usr/src/matomo/ /app/
 
-ENV MATOMO_PLUGIN_DIRS='/app/plugins;plugins/:/app/plugins_baseimage;plugins_baseimage/'
+ENV MATOMO_PLUGIN_DIRS='/app/plugins/;plugins/:/app/plugins_persistent/;plugins_persistent/'
+ENV MATOMO_PLUGIN_COPY_DIR='/app/plugins_persistent/'
 
 RUN mkdir -p /seedfiles/plugins
 
 COPY --from=matomolib /usr/src/matomo/config /seedfiles/config/
 # COPY --from=matomolib /usr/src/matomo/plugins /seedfiles/plugins/
-COPY --from=matomolib /usr/src/matomo/plugins /app/plugins_baseimage/
+COPY --from=matomolib /usr/src/matomo/plugins /app/plugins/
 
 RUN chown -R 1000:1000 /seedfiles/config /seedfiles/plugins /app
 

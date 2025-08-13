@@ -6,7 +6,7 @@ x-volumes:
     volumes:
       # - ./:/main:delegated
       - matomo-config:/app/config
-      - matomo-plugins:/app/plugins
+      - matomo-plugins:/app/plugins_persistent
       - matomo-tmp:/app/tmp
 x-environment:
   &default-environment
@@ -16,7 +16,8 @@ x-environment:
     #LAGOON_ENVIRONMENT_TYPE: production
     # Uncomment to enable xdebug and then restart via `docker-compose up -d`
     #XDEBUG_ENABLE: "true"
-    MATOMO_PLUGIN_DIRS: "/app/plugins;plugins/:/app/plugins_baseimage;plugins_baseimage/"
+    # MATOMO_PLUGIN_DIRS: "/app/plugins;plugins/:/app/plugins_persistent;plugins_persistent/"
+    # MATOMO_PLUGIN_COPY_DIR: "/app/plugins_persistent/"
 
 x-user:
   &default-user
@@ -54,7 +55,7 @@ services:
       lagoon.type: cli
       lando.type: php-cli-drupal
       lagoon.volumes.matomo-config.path: /app/config
-      lagoon.volumes.matomo-plugins.path: /app/plugins
+      lagoon.volumes.matomo-plugins.path: /app/plugins_persistent
       lagoon.volumes.matomo-tmp.path: /app/tmp
     << : 
     - *default-volumes # loads the defined volumes from the top
@@ -74,7 +75,7 @@ services:
     labels:
       lagoon.type: nginx-php
       lagoon.volumes.matomo-config.path: /app/config
-      lagoon.volumes.matomo-plugins.path: /app/plugins
+      lagoon.volumes.matomo-plugins.path: /app/plugins_persistent
       lagoon.volumes.matomo-tmp.path: /app/tmp
     << : 
       - *default-volumes # loads the defined volumes from the top
@@ -99,7 +100,7 @@ services:
       lagoon.name: nginx
       lando.type: php-fpm
       lagoon.volumes.matomo-config.path: /app/config
-      lagoon.volumes.matomo-plugins.path: /app/plugins
+      lagoon.volumes.matomo-plugins.path: /app/plugins_persistent
       lagoon.volumes.matomo-tmp.path: /app/tmp
     << :
      - *default-volumes # loads the defined volumes from the top
