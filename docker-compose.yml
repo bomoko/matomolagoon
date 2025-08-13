@@ -16,6 +16,7 @@ x-environment:
     #LAGOON_ENVIRONMENT_TYPE: production
     # Uncomment to enable xdebug and then restart via `docker-compose up -d`
     #XDEBUG_ENABLE: "true"
+    MATOMO_PLUGIN_DIRS: "/app/plugins;plugins/:/app/plugins_baseimage;plugins_baseimage/"
 
 x-user:
   &default-user
@@ -55,7 +56,9 @@ services:
       lagoon.volumes.matomo-config.path: /app/config
       lagoon.volumes.matomo-plugins.path: /app/plugins
       lagoon.volumes.matomo-tmp.path: /app/tmp
-    << : *default-volumes # loads the defined volumes from the top
+    << : 
+    - *default-volumes # loads the defined volumes from the top
+    - *default-user # uses the defined user from top
     user: root
     volumes_from: ### mount the ssh-agent from the pygmy or cachalot ssh-agent. Automatically removed in CI.
       - container:amazeeio-ssh-agent ### Local overrides to mount host SSH keys. Automatically removed in CI.
@@ -107,13 +110,13 @@ services:
       << : *default-environment # loads the defined environment variables from the top
 
   mariadb:
-    image: uselagoon/mariadb-10.11-drupal:latest
+    image: uselagoon/mariadb-10.11:latest
     labels:
       lagoon.type: mariadb
       lando.type: mariadb-drupal
     ports:
       - "3306" # exposes the port 3306 with a random local port, find it with `docker-compose port mariadb 3306`
-    << : *default-user # uses the defined user from top
+    # << : *default-user # uses the defined user from top
     environment:
       << : *default-environment
     volumes:
