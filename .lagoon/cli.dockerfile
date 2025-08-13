@@ -16,6 +16,7 @@ COPY --from=matomolib /usr/src/matomo/config /seedfiles/config/
 COPY --from=matomolib /usr/src/matomo/plugins /app/plugins/
 
 RUN chown -R 1000:1000 /seedfiles/config /seedfiles/plugins /app
+RUN fix-permissions /app/plugins
 
 
 COPY ./.lagoon/entrypoints/copy_seed_files.sh /lagoon/entrypoints/100_seed_files.sh
